@@ -8,7 +8,10 @@ function Navbar() {
 
   return (
     <nav className="bg-yellow-400 flex items-center justify-between py-3 px-5">
-      <Link to={"/"} className="font-mono text-gray-700 text-lg bg-transparent">
+      <Link
+        to={"/"}
+        className="font-mono text-gray-700 sm:text-lg bg-transparent"
+      >
         FAST REACT PIZZA CO.
       </Link>
       <input

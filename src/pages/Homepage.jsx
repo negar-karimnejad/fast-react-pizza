@@ -8,7 +8,7 @@ function Homepage() {
   const user = true;
 
   return (
-    <div className="flex items-center flex-col justify-center pt-20">
+    <div className="flex text-center items-center flex-col justify-center pt-20">
       <h2 className="font-medium text-gray-700 text-xl md:text-3xl">
         The best pizza.
       </h2>
