@@ -5,13 +5,15 @@ import Loader from "./Loader";
 
 function AppLayout() {
   const { state } = useNavigation();
+  const isLoading = state === "loading";
+  const isIdle = state === "idle";
 
   return (
     <div className="w-full h-screen flex flex-col justify-between">
-      {state === "loading" && <Loader />}
+      {isLoading && <Loader />}
       <>
         <Navbar />
-        {state === "idle" && <Outlet />}
+        {isIdle && <Outlet />}
       </>
       <CartOverview />
     </div>
