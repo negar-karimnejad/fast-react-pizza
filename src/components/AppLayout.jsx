@@ -1,8 +1,15 @@
-/* eslint-disable react/prop-types */
-function AppLayout({ children }) {
+import { Outlet } from "react-router";
+import Navbar from "./Navbar";
+import CartOverview from "./CartOverview";
+
+function AppLayout() {
   return (
     <div className="w-full h-screen flex flex-col justify-between">
-      {children}
+      <>
+        <Navbar />
+        <Outlet />
+      </>
+      <CartOverview />
     </div>
   );
 }
