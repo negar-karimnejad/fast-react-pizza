@@ -3,32 +3,31 @@ import { useState } from "react";
 
 function MenuItem({ pizza }) {
   const [add, setAdd] = useState(false);
-  const [soldout] = useState(false);
-  console.log("pizza=>", pizza);
+  const { imageUrl, soldOut, name, ingredients, unitPrice } = pizza;
   
   return (
     <div className="flex justify-between items-end border-b-2 p-2">
       <div className="flex gap-5">
         <img
-          src="https://dclaevazetcjjkrzczpc.supabase.co/storage/v1/object/public/pizzas/pizza-1.jpg"
+          src={imageUrl}
           alt=""
-          className={`${soldout ? "grayscale opacity-50" : ""} w-24 h-24`}
+          className={`${soldOut ? "grayscale opacity-50" : ""} w-24 h-24`}
         />
         <div className="flex flex-col justify-between">
           <div>
-            <p className="font-medium text-gray-700 text-lg">Margherita</p>
-            <p className="italic text-gray-500">Tomato, Mozzarella, Basil</p>
+            <p className="font-medium text-gray-700 text-lg">{name}</p>
+            <p className="italic text-gray-500">{ingredients.join(", ")}</p>
           </div>
-          <p className={soldout ? "font-semibold text-gray-400" : ""}>
-            {soldout ? "SOLD OUT" : "€12.00"}{" "}
+          <p className={soldOut ? "font-semibold text-gray-400" : ""}>
+            {soldOut ? "SOLD OUT" : unitPrice}{" "}
           </p>
         </div>
       </div>
-      {!add && !soldout && (
+      {!add && !soldOut && (
         <button
           type="button"
           onClick={() => setAdd(true)}
-          className="font-medium text-sm text-gray-800 bg-yellow-400 rounded-full px-4 py-1.5 uppercase transition-all hover:bg-yellow-300"
+          className="font-medium text-sm min-w-fit text-gray-800 bg-yellow-400 rounded-full px-4 py-1.5 uppercase transition-all hover:bg-yellow-300"
         >
           add to cart
         </button>

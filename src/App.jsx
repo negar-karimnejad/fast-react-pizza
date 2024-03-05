@@ -1,17 +1,19 @@
-import { useRoutes } from "react-router-dom";
-import Navbar from "./components/Navbar";
-import { routes } from "./routes";
+import { RouterProvider } from "react-router-dom";
+import AppLayout from "./components/AppLayout";
 import CartOverview from "./components/CartOverview";
+import Navbar from "./components/Navbar";
+import { router } from "./routes";
 
 export default function App() {
-  const router = useRoutes(routes);
   return (
-    <div className="w-full h-screen flex flex-col justify-between">
-      <div>
-        <Navbar />
-        {router}
-      </div>
-      <CartOverview />
-    </div>
+    <RouterProvider router={router}/>
+    //   <AppLayout>
+    //     <>
+    //       <Navbar />
+    //       {router}
+    //     </>
+    //     <CartOverview />
+    //   </AppLayout>
+    // </RouterProvider>
   );
 }
