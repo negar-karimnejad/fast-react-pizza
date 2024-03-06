@@ -5,8 +5,8 @@ function Error() {
   const error = useRouteError();
 
   return (
-    <div className="flex flex-col items-center gap-5 mt-20">
-      <h2 className="font-bold text-2xl text-gray-800">
+    <div className="flex flex-col items-center gap-5">
+      <h2 className="font-bold text-3xl text-gray-800">
         Something went wrong😢
       </h2>
       <p className="text-gray-700 font-medium">
