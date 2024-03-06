@@ -5,7 +5,6 @@ export async function getMenu() {
   if (!res.ok) throw new Error('Failed getting menu');
 
   const { data } = await res.json();
-  console.log(data);
   return data;
 }
 
