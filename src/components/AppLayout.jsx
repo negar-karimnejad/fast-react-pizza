@@ -9,14 +9,12 @@ function AppLayout() {
   const isIdle = state === "idle";
 
   return (
-    <div className="w-full h-screen flex flex-col justify-between">
+    <>
       {isLoading && <Loader />}
-      <>
-        <Navbar />
-        {isIdle && <Outlet />}
-      </>
+      <Navbar />
+      {isIdle && <Outlet />}
       <CartOverview />
-    </div>
+    </>
   );
 }
 

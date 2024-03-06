@@ -1,10 +1,11 @@
 /* eslint-disable react/prop-types */
 import { useState } from "react";
+import { formatCurrency } from "../utilities/formatCurrency";
 
 function MenuItem({ pizza }) {
   const [add, setAdd] = useState(false);
   const { imageUrl, soldOut, name, ingredients, unitPrice } = pizza;
-  
+
   return (
     <div className="flex justify-between items-end border-b-2 p-2">
       <div className="flex gap-5">
@@ -19,7 +20,7 @@ function MenuItem({ pizza }) {
             <p className="italic text-gray-500">{ingredients.join(", ")}</p>
           </div>
           <p className={soldOut ? "font-semibold text-gray-400" : ""}>
-            {soldOut ? "SOLD OUT" : unitPrice}{" "}
+            {soldOut ? "SOLD OUT" : formatCurrency(unitPrice)}{" "}
           </p>
         </div>
       </div>
