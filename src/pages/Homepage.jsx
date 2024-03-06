@@ -1,12 +1,23 @@
 import { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router';
 import Button from '../components/Button';
+import { createUser } from '../feature/user/userSlice';
 
 function Homepage() {
   const [fullname, setFullname] = useState('');
   const navigate = useNavigate();
+  const user = useSelector((store) => store.user.name);
 
-  const user = false;
+  const dispatch = useDispatch();
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (!fullname) return;
+
+    dispatch(createUser(fullname));
+    navigate('/menu');
+  };
 
   return (
     <div className="flex flex-col items-center justify-center pt-20 text-center">
@@ -21,7 +32,10 @@ function Homepage() {
           <p className="mb-5 text-sm text-gray-700 md:text-lg">
             👋 Welcome! Please start by telling us your name:
           </p>
-          <form className="flex flex-col items-center justify-center">
+          <form
+            onSubmit={handleSubmit}
+            className="flex flex-col items-center justify-center"
+          >
             <input
               className="input mb-8"
               type="text"
@@ -30,7 +44,7 @@ function Homepage() {
               onChange={(e) => setFullname(e.target.value)}
             />
 
-            {fullname && <Button>START ORDERING</Button>}
+            {fullname && <Button type="submit">START ORDERING</Button>}
           </form>
         </>
       )}

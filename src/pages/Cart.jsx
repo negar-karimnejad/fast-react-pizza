@@ -1,10 +1,11 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import Button from '../components/Button';
+import { useSelector } from 'react-redux';
 
 function Cart() {
   const navigate = useNavigate();
-
+  const user = useSelector((state) => state.user.name);
   const [isEmpty] = useState(false);
 
   return (
@@ -19,7 +20,7 @@ function Cart() {
       ) : (
         <>
           <h2 className="mt-8 text-2xl font-bold text-gray-800">
-            Your cart, X
+            Your cart, {user}
           </h2>
           <div className="flex justify-between gap-y-3 border-b-2 py-5 max-sm:flex-col sm:items-center">
             <p>1× Romana</p>

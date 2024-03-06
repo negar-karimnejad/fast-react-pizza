@@ -1,7 +1,14 @@
 /* eslint-disable react-refresh/only-export-components */
-import { Form, redirect, useActionData, useNavigation } from 'react-router-dom';
+import {
+  Form,
+  redirect,
+  useActionData,
+  useNavigate,
+  useNavigation,
+} from 'react-router-dom';
 import { createOrder } from '../services/apiRestuarant';
 import Button from '../components/Button';
+import { useSelector } from 'react-redux';
 
 const isValidPhone = (str) =>
   /^\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}$/.test(
@@ -10,11 +17,13 @@ const isValidPhone = (str) =>
 
 function CreateOrder() {
   const navigation = useNavigation();
-
+  const navigate = useNavigate();
+  const user = useSelector((state) => state.user.name);
   const formErrors = useActionData();
 
   const isSubmitting = navigation.state === 'submitting';
   const cart = [];
+  const order = {};
 
   return (
     <div className="mx-auto max-w-4xl p-8">
@@ -32,6 +41,7 @@ function CreateOrder() {
             type="text"
             id="firstname"
             name="customer"
+            defaultValue={user}
             required
           />
         </label>
@@ -81,7 +91,11 @@ function CreateOrder() {
           </label>
         </div>
         <input type="hidden" name="cart" value={JSON.stringify(cart)} />
-        <Button disabled={isSubmitting} type="submit">
+        <Button
+          disabled={isSubmitting}
+          type="submit"
+          onClick={() => navigate(`/order/${order.id}`)}
+        >
           {isSubmitting ? 'Placing order...' : 'ORDER NOW'}
         </Button>
       </Form>
