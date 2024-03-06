@@ -1,13 +1,13 @@
-import { Link } from "react-router-dom";
+import { Link } from 'react-router-dom';
 
 function CartOverview() {
   return (
-    <div className="fixed bottom-0 left-0 w-full flex items-center justify-between bg-stone-800 py-3 [&>*]:bg-transparent px-5 text-gray-200">
-      <div className="flex items-center font-medium gap-5 [&>*]:bg-transparent">
+    <div className="fixed bottom-0 left-0 flex w-full items-center justify-between bg-stone-800 px-5 py-3 text-gray-200 [&>*]:bg-transparent">
+      <div className="flex items-center gap-5 font-medium [&>*]:bg-transparent">
         <p>1 PIZZAS</p>
         <p>€15.00</p>
       </div>
-      <Link to={"/cart"} className="uppercase">
+      <Link to={'/cart'} className="uppercase">
         OPEN CART →
       </Link>
     </div>

@@ -1,6 +1,6 @@
 function Loader() {
   return (
-    <div className="bg-white/20 backdrop-blur-md w-full h-full absolute flex items-center justify-center">
+    <div className="absolute flex h-full w-full items-center justify-center bg-white/20 backdrop-blur-md">
       <div className="loader"></div>
     </div>
   );

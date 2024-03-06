@@ -1,5 +1,5 @@
-import { useLoaderData } from "react-router";
-import { getOrder } from "../services/apiRestuarant";
+import { useLoaderData } from 'react-router';
+import { getOrder } from '../services/apiRestuarant';
 
 /* eslint-disable react-refresh/only-export-components */
 function Order() {

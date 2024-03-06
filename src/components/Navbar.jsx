@@ -1,8 +1,8 @@
-import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 
 function Navbar() {
-  const [query, setQuery] = useState("");
+  const [query, setQuery] = useState('');
   const navigate = useNavigate();
   const user = true;
 
@@ -10,14 +10,14 @@ function Navbar() {
     e.preventDefault();
     if (!query) return;
     navigate(`/order/${query}`);
-    setQuery("");
+    setQuery('');
   };
 
   return (
-    <nav className="bg-yellow-400 flex items-center justify-between py-3 px-5">
+    <nav className="flex items-center justify-between bg-yellow-400 px-5 py-3">
       <Link
-        to={"/"}
-        className="font-mono text-gray-700 sm:text-lg bg-transparent"
+        to={'/'}
+        className="bg-transparent font-mono text-gray-700 sm:text-lg"
       >
         FAST REACT PIZZA CO.
       </Link>
@@ -33,7 +33,7 @@ function Navbar() {
       </form>
 
       {user && (
-        <p className="uppercase bg-transparent font-medium text-sm hidden md:block">
+        <p className="hidden bg-transparent text-sm font-medium uppercase md:block">
           X
         </p>
       )}
