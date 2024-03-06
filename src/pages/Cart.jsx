@@ -21,9 +21,21 @@ function Cart() {
           <h2 className="mt-8 text-2xl font-bold text-gray-800">
             Your cart, X
           </h2>
-          <div className="flex flex-col justify-between gap-y-3 border-b-2 py-8 sm:flex-row sm:items-center">
+          <div className="flex justify-between gap-y-3 border-b-2 py-5 max-sm:flex-col sm:items-center">
             <p>1× Romana</p>
-            <div className="flex items-center gap-8">
+            <div className="flex items-center justify-end gap-8">
+              <p className="font-bold text-gray-800">€15.00</p>
+              <div className="flex items-center gap-3">
+                <Button varient="circle">-</Button>
+                <p>1</p>
+                <Button varient="circle">+</Button>
+                <Button>delete</Button>
+              </div>
+            </div>
+          </div>
+          <div className="flex justify-between gap-y-3 border-b-2 py-5 max-sm:flex-col sm:items-center">
+            <p>1× Romana</p>
+            <div className="flex items-center justify-end gap-8">
               <p className="font-bold text-gray-800">€15.00</p>
               <div className="flex items-center gap-3">
                 <Button varient="circle">-</Button>
