@@ -1,11 +1,12 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router';
+import Button from '../components/Button';
 
 function Homepage() {
   const [fullname, setFullname] = useState('');
   const navigate = useNavigate();
 
-  const user = true;
+  const user = false;
 
   return (
     <div className="flex flex-col items-center justify-center pt-20 text-center">
@@ -22,32 +23,19 @@ function Homepage() {
           </p>
           <form className="flex flex-col items-center justify-center">
             <input
-              className="mb-5 rounded-full border border-gray-200 bg-white px-4 py-2 outline-none focus:border-none focus:ring focus:ring-yellow-300 md:w-72"
+              className="input mb-8"
               type="text"
               placeholder="Your full name"
               value={fullname}
               onChange={(e) => setFullname(e.target.value)}
             />
 
-            {fullname && (
-              <button
-                type="button"
-                className="rounded-full bg-yellow-400 px-4 py-3 font-semibold text-gray-800 transition-all hover:bg-yellow-300 md:w-44"
-              >
-                START ORDERING
-              </button>
-            )}
+            {fullname && <Button>START ORDERING</Button>}
           </form>
         </>
       )}
       {user && (
-        <button
-          type="button"
-          className="rounded-full bg-yellow-400 px-4 py-3 font-semibold text-gray-800 transition-all hover:bg-yellow-300"
-          onClick={() => navigate('/menu')}
-        >
-          CONTINUE ORDERING, X
-        </button>
+        <Button onClick={() => navigate('/menu')}>CONTINUE ORDERING, X</Button>
       )}
     </div>
   );

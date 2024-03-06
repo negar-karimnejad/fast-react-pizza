@@ -10,7 +10,7 @@ function AppLayout() {
 
   return (
     <div className="pb-12">
-      {!isLoading && <Loader />}
+      {isLoading && <Loader />}
       <Navbar />
       {isIdle && <Outlet />}
       <CartOverview />

@@ -1,6 +1,7 @@
 /* eslint-disable react/prop-types */
 import { useState } from 'react';
 import { formatCurrency } from '../utilities/formatCurrency';
+import Button from './Button';
 
 function MenuItem({ pizza }) {
   const [add, setAdd] = useState(false);
@@ -25,36 +26,15 @@ function MenuItem({ pizza }) {
         </div>
       </div>
       {!add && !soldOut && (
-        <button
-          type="button"
-          onClick={() => setAdd(true)}
-          className="min-w-fit rounded-full bg-yellow-400 px-4 py-1.5 text-sm font-medium uppercase text-gray-800 transition-all hover:bg-yellow-300"
-        >
-          add to cart
-        </button>
+        <Button onClick={() => setAdd(true)}>add to cart</Button>
       )}
       {add && (
         <div className="flex items-center gap-2">
-          <button
-            type="button"
-            className="h-8 w-8 rounded-full bg-yellow-400 text-sm font-medium uppercase text-gray-800 transition-all hover:bg-yellow-300"
-          >
-            -
-          </button>
+          <Button varient="circle">-</Button>
           <p>1</p>
-          <button
-            type="button"
-            className="h-8 w-8 rounded-full bg-yellow-400 text-sm font-medium uppercase text-gray-800 transition-all hover:bg-yellow-300"
-          >
-            +
-          </button>
-          <button
-            type="button"
-            onClick={() => setAdd(false)}
-            className="rounded-full bg-yellow-400 px-4 py-1.5 text-sm font-medium uppercase text-gray-800 transition-all hover:bg-yellow-300"
-          >
-            delete
-          </button>
+          <Button varient="circle">+</Button>
+
+          <Button onClick={() => setAdd(false)}>delete</Button>
         </div>
       )}
     </div>

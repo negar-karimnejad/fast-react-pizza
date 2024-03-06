@@ -1,4 +1,5 @@
 import { useNavigate, useRouteError } from 'react-router';
+import Button from './Button';
 
 function Error() {
   const navigate = useNavigate();
@@ -12,12 +13,7 @@ function Error() {
       <p className="font-medium text-gray-700">
         {error?.message || error?.error?.message}
       </p>
-      <button
-        onClick={() => navigate(-1)}
-        className="rounded-full bg-yellow-400 px-4 py-2 font-bold transition-all hover:bg-yellow-300"
-      >
-        ← Go back
-      </button>
+      <Button onClick={() => navigate(-1)}>← Go back</Button>
     </div>
   );
 }

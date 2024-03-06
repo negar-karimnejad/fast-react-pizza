@@ -1,6 +1,7 @@
 /* eslint-disable react-refresh/only-export-components */
 import { Form, redirect, useActionData, useNavigation } from 'react-router-dom';
 import { createOrder } from '../services/apiRestuarant';
+import Button from '../components/Button';
 
 const isValidPhone = (str) =>
   /^\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}$/.test(
@@ -27,7 +28,7 @@ function CreateOrder() {
         >
           <span className="md:mt-3">First Name</span>
           <input
-            className="mb-6 w-full rounded-full border border-gray-200 bg-white px-4 py-3 outline-none focus:border-none focus:ring focus:ring-yellow-300 md:w-96"
+            className="input mb-6 w-full py-3 md:w-96"
             type="text"
             id="firstname"
             name="customer"
@@ -40,7 +41,7 @@ function CreateOrder() {
         >
           <span className="md:mt-3">Phone number</span>
           <input
-            className="mb-6 w-full rounded-full border border-gray-200 bg-white px-4 py-3 outline-none focus:border-none focus:ring focus:ring-yellow-300 md:w-96"
+            className="input mb-6 w-full py-3 md:w-96"
             type="text"
             id="phoneNumber"
             name="phone"
@@ -58,18 +59,13 @@ function CreateOrder() {
         >
           <span className="md:mt-3">Address</span>
           <input
-            className="mb-6 w-full rounded-full border border-gray-200 bg-white px-4 py-3 outline-none focus:border-none focus:ring focus:ring-yellow-300 md:w-96"
+            className="input mb-6 w-full py-3 md:w-96"
             type="text"
             id="address"
             name="address"
             required
           />
-          <button
-            type="button"
-            className="absolute right-1 top-7 h-10 items-center rounded-full bg-yellow-400 px-4 text-sm text-gray-800 transition-all hover:bg-yellow-300 sm:right-1 sm:top-1"
-          >
-            GET POSITION
-          </button>
+          <Button varient="position">GET POSITION</Button>
         </label>
 
         <div className="mb-10 mt-5 flex items-center gap-3">
@@ -85,13 +81,9 @@ function CreateOrder() {
           </label>
         </div>
         <input type="hidden" name="cart" value={JSON.stringify(cart)} />
-        <button
-          type="submit"
-          disabled={isSubmitting}
-          className="rounded-full bg-yellow-400 px-4 py-3 font-semibold text-gray-800 transition-all hover:bg-yellow-300"
-        >
+        <Button disabled={isSubmitting} type="submit">
           {isSubmitting ? 'Placing order...' : 'ORDER NOW'}
-        </button>
+        </Button>
       </Form>
     </div>
   );

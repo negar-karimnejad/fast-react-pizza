@@ -24,7 +24,7 @@ function Navbar() {
 
       <form onSubmit={handleSubmit} className="bg-transparent">
         <input
-          className="w-32 rounded-full bg-yellow-100 px-4 py-2 transition-all duration-300 placeholder:text-stone-300 focus:outline-none focus:ring focus:ring-yellow-500 focus:ring-opacity-50 sm:w-64 sm:focus:w-72"
+          className="input w-32 bg-yellow-100 sm:w-64 sm:focus:w-72"
           type="text"
           placeholder="Search order #"
           value={query}
