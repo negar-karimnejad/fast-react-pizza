@@ -6,6 +6,7 @@ import CreateOrder from "./pages/CreateOrder";
 import Homepage from "./pages/Homepage";
 import Menu, { loader as menuLoader } from "./pages/Menu";
 import Order from "./pages/Order";
+import { action as createOrderAction } from "./pages/CreateOrder";
 
 export const router = createBrowserRouter([
   {
@@ -20,7 +21,11 @@ export const router = createBrowserRouter([
         errorElement: <Error />,
       },
       { path: "/cart", element: <Cart /> },
-      { path: "/order/new", element: <CreateOrder /> },
+      {
+        path: "/order/new",
+        element: <CreateOrder />,
+        action: createOrderAction,
+      },
       { path: "/order/:orderId", element: <Order /> },
     ],
   },

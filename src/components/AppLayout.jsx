@@ -9,12 +9,12 @@ function AppLayout() {
   const isIdle = state === "idle";
 
   return (
-    <>
+    <div className="pb-12">
       {isLoading && <Loader />}
       <Navbar />
       {isIdle && <Outlet />}
       <CartOverview />
-    </>
+    </div>
   );
 }
 
