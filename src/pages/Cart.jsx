@@ -1,10 +1,10 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import BackLink from '../components/BackLink';
 import Button from '../components/Button';
-import DeleteButton from '../components/DeleteButton';
+import CartItem from '../components/CartItem';
 import EmptyCart from '../components/EmptyCart';
 import { clearCart } from '../feature/cart/cartSlice';
-import BackLink from '../components/BackLink';
 
 function Cart() {
   const navigate = useNavigate();
@@ -22,21 +22,7 @@ function Cart() {
         Your cart, {user}
       </h2>
       {cart.map((pizza) => (
-        <div
-          key={pizza.pizzaId}
-          className="flex justify-between gap-y-3 border-b-2 py-5 max-sm:flex-col sm:items-center"
-        >
-          <p>1× {pizza.name}</p>
-          <div className="flex items-center justify-end gap-8">
-            <p className="font-bold text-gray-800">€{pizza.unitPrice}</p>
-            <div className="flex items-center gap-3">
-              <Button varient="circle">-</Button>
-              <p>1</p>
-              <Button varient="circle">+</Button>
-              <DeleteButton id={pizza.pizzaId} />
-            </div>
-          </div>
-        </div>
+        <CartItem key={pizza.pizzaId} pizza={pizza} />
       ))}
       <div className="mt-8 flex gap-2">
         <Button onClick={() => navigate('/order/new')}>ORDER PIZZAS</Button>

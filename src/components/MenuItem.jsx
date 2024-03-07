@@ -1,14 +1,13 @@
 /* eslint-disable react/prop-types */
-import { useState } from 'react';
-import { formatCurrency } from '../utilities/formatCurrency';
-import Button from './Button';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   addToCart,
-  incrementQuantity,
   decrementQuantity,
   getCurrentQuantityById,
+  incrementQuantity,
 } from '../feature/cart/cartSlice';
+import { formatCurrency } from '../utilities/formatCurrency';
+import Button from './Button';
 import DeleteButton from './DeleteButton';
 
 function MenuItem({ pizza }) {
@@ -44,7 +43,7 @@ function MenuItem({ pizza }) {
             <p className="italic text-stone-500">{ingredients.join(', ')}</p>
           </div>
           <p className={soldOut ? 'font-semibold text-stone-500' : ''}>
-            {soldOut ? 'SOLD OUT' : formatCurrency(unitPrice)}{' '}
+            {soldOut ? 'SOLD OUT' : formatCurrency(unitPrice)}
           </p>
         </div>
       </div>
@@ -57,7 +56,6 @@ function MenuItem({ pizza }) {
             varient="circle"
             onClick={() => {
               dispatch(decrementQuantity(id));
-              setMenuQuantity((prev) => prev - 1);
             }}
           >
             -
@@ -67,7 +65,6 @@ function MenuItem({ pizza }) {
             varient="circle"
             onClick={() => {
               dispatch(incrementQuantity(id));
-              setMenuQuantity((prev) => prev + 1);
             }}
           >
             +

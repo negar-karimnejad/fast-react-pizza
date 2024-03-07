@@ -9,7 +9,7 @@ function Button({
   type = 'button',
 }) {
   const base =
-    'min-w-fit rounded-full bg-yellow-400 px-4 py-2 font-semibold text-gray-800 transition-all hover:bg-yellow-300';
+    'min-w-fit rounded-full bg-yellow-400 px-4 py-2 font-semibold text-gray-800 transition-all hover:bg-yellow-300 focus:ring focus:ring-yellow-400 focus:ring-offset-2';
 
   const styles = {
     primary: base + '',
