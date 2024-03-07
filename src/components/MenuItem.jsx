@@ -2,28 +2,30 @@
 import { useState } from 'react';
 import { formatCurrency } from '../utilities/formatCurrency';
 import Button from './Button';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import {
   addToCart,
   incrementQuantity,
   decrementQuantity,
+  getCurrentQuantityById,
 } from '../feature/cart/cartSlice';
+import DeleteButton from './DeleteButton';
 
 function MenuItem({ pizza }) {
-  const [add, setAdd] = useState(false);
-  const [menuQuantity, setMenuQuantity] = useState(1);
-  const dispatch = useDispatch();
-
   const { id, imageUrl, soldOut, name, ingredients, unitPrice } = pizza;
-  const handleClick = () => {
-    setAdd(true);
 
+  const dispatch = useDispatch();
+  const currentQuantity = useSelector(getCurrentQuantityById(id));
+
+  const isInCart = currentQuantity > 0;
+
+  const handleClick = () => {
     const newItem = {
       pizzaId: id,
       name,
       quantity: 1,
       unitPrice,
-      totalPrice: unitPrice,
+      totalPrice: unitPrice * 1,
     };
     dispatch(addToCart(newItem));
   };
@@ -46,8 +48,10 @@ function MenuItem({ pizza }) {
           </p>
         </div>
       </div>
-      {!add && !soldOut && <Button onClick={handleClick}>add to cart</Button>}
-      {add && (
+      {!isInCart && !soldOut && (
+        <Button onClick={handleClick}>add to cart</Button>
+      )}
+      {isInCart && (
         <div className="flex items-center gap-2">
           <Button
             varient="circle"
@@ -58,7 +62,7 @@ function MenuItem({ pizza }) {
           >
             -
           </Button>
-          <p>{menuQuantity}</p>
+          <p>{currentQuantity}</p>
           <Button
             varient="circle"
             onClick={() => {
@@ -68,8 +72,7 @@ function MenuItem({ pizza }) {
           >
             +
           </Button>
-
-          <Button onClick={() => setAdd(false)}>delete</Button>
+          <DeleteButton id={id} />
         </div>
       )}
     </div>
