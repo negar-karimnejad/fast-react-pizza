@@ -20,8 +20,6 @@ function Button({
       base +
       ' border-2 border-gray-300 bg-gray-300 text-gray-500  hover:bg-gray-200 hover:text-gray-800',
     circle: base + ' h-8 w-8 min-w-px flex items-center justify-center',
-    priority: base + ' bg-red-500 text-stone-100',
-    preparing: base + ' bg-green-500 text-stone-100',
   };
 
   return (

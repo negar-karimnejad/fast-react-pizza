@@ -6,7 +6,7 @@ import {
 } from '../feature/cart/cartSlice';
 import Button from './Button';
 
-function UpdateItemQuantity({ pizzaId }) {
+function UpdateItemQuantity({ pizzaId, currentQuantity }) {
   const dispatch = useDispatch();
 
   return (
@@ -19,6 +19,7 @@ function UpdateItemQuantity({ pizzaId }) {
       >
         -
       </Button>
+      <p className='mx-1'>{currentQuantity}</p>
       <Button
         onClick={() => {
           dispatch(incrementQuantity(pizzaId));

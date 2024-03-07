@@ -8,7 +8,12 @@ import {
 } from 'react-router-dom';
 import { createOrder } from '../services/apiRestuarant';
 import Button from '../components/Button';
+import EmptyCart from '../components/EmptyCart';
 import { useSelector } from 'react-redux';
+import store from '../store';
+import { clearCart, getTotalCartPrice } from '../feature/cart/cartSlice';
+import { formatCurrency } from '../utilities/formatCurrency';
+import { useState } from 'react';
 
 const isValidPhone = (str) =>
   /^\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}$/.test(
@@ -16,14 +21,21 @@ const isValidPhone = (str) =>
   );
 
 function CreateOrder() {
+  const [withPriority, setWithPriority] = useState(false);
+
   const navigation = useNavigation();
   const navigate = useNavigate();
   const user = useSelector((state) => state.user.name);
   const formErrors = useActionData();
 
   const isSubmitting = navigation.state === 'submitting';
-  const cart = [];
+  const cart = useSelector((state) => state.cart.cart);
+  const totalCartPrice = useSelector(getTotalCartPrice);
+  const priorityPrice = withPriority ? totalCartPrice * 0.2 : 0;
+  const totalPrice = totalCartPrice + priorityPrice;
+
   const order = {};
+  if (!cart.length) return <EmptyCart />;
 
   return (
     <div className="mx-auto max-w-4xl p-8">
@@ -75,7 +87,7 @@ function CreateOrder() {
             name="address"
             required
           />
-          <Button varient="position">GET POSITION</Button>
+          {/* <Button varient="position">GET POSITION</Button> */}
         </label>
 
         <div className="mb-10 mt-5 flex items-center gap-3">
@@ -84,6 +96,8 @@ function CreateOrder() {
             type="checkbox"
             id="priority"
             name="priority"
+            value={withPriority}
+            onChange={(e) => setWithPriority(e.target.checked)}
           />
 
           <label htmlFor="priority" className="font-bold text-gray-700">
@@ -96,7 +110,9 @@ function CreateOrder() {
           type="submit"
           onClick={() => navigate(`/order/${order.id}`)}
         >
-          {isSubmitting ? 'Placing order...' : 'ORDER NOW'}
+          {isSubmitting
+            ? 'Placing order...'
+            : `ORDER NOW ${formatCurrency(totalPrice)}`}
         </Button>
       </Form>
     </div>
@@ -109,7 +125,7 @@ export async function action({ request }) {
 
   const order = {
     ...data,
-    priority: data.priority === 'on',
+    priority: data.priority === 'true',
     cart: JSON.parse(data.cart),
   };
   const errors = {};
@@ -120,6 +136,9 @@ export async function action({ request }) {
 
   // If everything is okay, create new order and redirect
   const newOrder = await createOrder(order);
+
+  store.dispatch(clearCart());
+
   return redirect(`/order/${newOrder.id}`);
 }
 

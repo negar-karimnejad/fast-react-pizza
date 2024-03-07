@@ -1,14 +1,10 @@
 /* eslint-disable react/prop-types */
 import { useDispatch, useSelector } from 'react-redux';
-import {
-  addToCart,
-  decrementQuantity,
-  getCurrentQuantityById,
-  incrementQuantity,
-} from '../feature/cart/cartSlice';
+import { addToCart, getCurrentQuantityById } from '../feature/cart/cartSlice';
 import { formatCurrency } from '../utilities/formatCurrency';
 import Button from './Button';
 import DeleteButton from './DeleteButton';
+import UpdateItemQuantity from './UpdateItemQuantity';
 
 function MenuItem({ pizza }) {
   const { id, imageUrl, soldOut, name, ingredients, unitPrice } = pizza;
@@ -52,23 +48,7 @@ function MenuItem({ pizza }) {
       )}
       {isInCart && (
         <div className="flex items-center gap-2">
-          <Button
-            varient="circle"
-            onClick={() => {
-              dispatch(decrementQuantity(id));
-            }}
-          >
-            -
-          </Button>
-          <p>{currentQuantity}</p>
-          <Button
-            varient="circle"
-            onClick={() => {
-              dispatch(incrementQuantity(id));
-            }}
-          >
-            +
-          </Button>
+          <UpdateItemQuantity pizzaId={id} currentQuantity={currentQuantity} />
           <DeleteButton id={id} />
         </div>
       )}
