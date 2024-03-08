@@ -28,7 +28,7 @@ function Button({
       disabled={disabled}
       type={type}
       varient={varient ? varient : ''}
-      onClick={onClick ? onClick : ''}
+      onClick={onClick ? onClick : () => {}}
     >
       {children}
     </button>
